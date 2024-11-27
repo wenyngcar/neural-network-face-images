@@ -35,13 +35,37 @@ BPNN *net;
   sscanf(NAME(img), "%[^_]_%[^_]_%[^_]_%[^_]_%d.%[^_]",
          userid, head, expression, eyes, &scale, photo);
 
-  if (!strcmp(userid, "mitchell"))
+  // if (!strcmp(userid, "mitchell"))
+  // {
+  //   net->target[1] = TARGET_HIGH; /* it's me, set target to HIGH */
+  // }
+  // else
+  // {
+  //   net->target[1] = TARGET_LOW; /* not me, set it to LOW */
+  // }
+
+  // Reset all target units.
+  for (int i = 1; i <= 4; i++)
   {
-    net->target[1] = TARGET_HIGH; /* it's me, set target to HIGH */
+    net->target[i] = TARGET_LOW;
   }
-  else
+
+  // Set target units base on expression.
+  if (!strcmp(expression, "neutral"))
   {
-    net->target[1] = TARGET_LOW; /* not me, set it to LOW */
+    net->target[1] = TARGET_HIGH;
+  }
+  else if (!strcmp(expression, "happy"))
+  {
+    net->target[2] = TARGET_HIGH;
+  }
+  else if (!strcmp(expression, "sad"))
+  {
+    net->target[3] = TARGET_HIGH;
+  }
+  else if (!strcmp(expression, "angry"))
+  {
+    net->target[4] = TARGET_HIGH;
   }
 }
 
