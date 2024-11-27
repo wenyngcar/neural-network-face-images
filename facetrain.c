@@ -145,9 +145,9 @@ char *netname;
       imgsize = ROWS(iimg) * COLS(iimg);
       /* bthom ===========================
   make a net with:
-    imgsize inputs, 4 hiden units, and 1 output unit
+    imgsize inputs, 4 hiden units, and 4 output unit for expressions.
           */
-      net = bpnn_create(imgsize, 4, 1);
+      net = bpnn_create(imgsize, 4, 4);
     }
     else
     {
