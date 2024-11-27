@@ -16,7 +16,6 @@ extern void exit();
 #define TARGET_HIGH 0.9
 #define TARGET_LOW 0.1
 
-
 /*** This is the target output encoding for a network with one output unit.
      It scans the image name, and if it's an image of me (js) then
      it sets the target unit to HIGH; otherwise it sets it to LOW.
@@ -24,7 +23,7 @@ extern void exit();
      is the one to change....  ***/
 
 load_target(img, net)
-IMAGE *img;
+    IMAGE *img;
 BPNN *net;
 {
   int scale;
@@ -34,22 +33,24 @@ BPNN *net;
 
   /*** scan in the image features ***/
   sscanf(NAME(img), "%[^_]_%[^_]_%[^_]_%[^_]_%d.%[^_]",
-    userid, head, expression, eyes, &scale, photo);
+         userid, head, expression, eyes, &scale, photo);
 
-  if (!strcmp(userid, "glickman")) {
-    net->target[1] = TARGET_HIGH;  /* it's me, set target to HIGH */
-  } else {
-    net->target[1] = TARGET_LOW;   /* not me, set it to LOW */
+  if (!strcmp(userid, "kawamura"))
+  {
+    net->target[1] = TARGET_HIGH; /* it's me, set target to HIGH */
+  }
+  else
+  {
+    net->target[1] = TARGET_LOW; /* not me, set it to LOW */
   }
 }
-
 
 /***********************************************************************/
 /********* You shouldn't need to change any of the code below.   *******/
 /***********************************************************************/
 
 load_input_with_image(img, net)
-IMAGE *img;
+    IMAGE *img;
 BPNN *net;
 {
   double *units;
@@ -57,18 +58,22 @@ BPNN *net;
 
   nr = ROWS(img);
   nc = COLS(img);
-  imgsize = nr * nc;;
-  if (imgsize != net->input_n) {
+  imgsize = nr * nc;
+  ;
+  if (imgsize != net->input_n)
+  {
     printf("LOAD_INPUT_WITH_IMAGE: This image has %d pixels,\n", imgsize);
     printf("   but your net has %d input units.  I give up.\n", net->input_n);
-    exit (-1);
+    exit(-1);
   }
 
   units = net->input_units;
   k = 1;
-  for (i = 0; i < nr; i++) {
-    for (j = 0; j < nc; j++) {
-      units[k] = ((double) img_getpixel(img, i, j)) / 255.0;
+  for (i = 0; i < nr; i++)
+  {
+    for (j = 0; j < nc; j++)
+    {
+      units[k] = ((double)img_getpixel(img, i, j)) / 255.0;
       k++;
     }
   }
