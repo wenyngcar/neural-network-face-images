@@ -35,7 +35,7 @@ BPNN *net;
   sscanf(NAME(img), "%[^_]_%[^_]_%[^_]_%[^_]_%d.%[^_]",
          userid, head, expression, eyes, &scale, photo);
 
-  if (!strcmp(userid, "kawamura"))
+  if (!strcmp(userid, "mitchell"))
   {
     net->target[1] = TARGET_HIGH; /* it's me, set target to HIGH */
   }
