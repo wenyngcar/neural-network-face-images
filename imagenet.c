@@ -51,19 +51,19 @@ BPNN *net;
   }
 
   // Set target units base on pose.
-  if (!strcmp(expression, "straight"))
+  if (!strcmp(expression, "neurtral"))
   {
     net->target[1] = TARGET_HIGH;
   }
-  else if (!strcmp(expression, "left"))
+  else if (!strcmp(expression, "happy"))
   {
     net->target[2] = TARGET_HIGH;
   }
-  else if (!strcmp(expression, "right"))
+  else if (!strcmp(expression, "sad"))
   {
     net->target[3] = TARGET_HIGH;
   }
-  else if (!strcmp(expression, "up"))
+  else if (!strcmp(expression, "angry"))
   {
     net->target[4] = TARGET_HIGH;
   }
